@@ -1,0 +1,6 @@
+﻿  sequential.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 5 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  lab_Seq.vcxproj -> C:\Users\Masha\OneDrive\Desktop\ParProg\Sequential\lab_Seq\Release\lab_Seq.exe
