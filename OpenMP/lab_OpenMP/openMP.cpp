@@ -25,7 +25,7 @@ bool isPalindrome(int x) {
 
 int main(int argc, char* argv[])
 {
-    int a = 1, b = 10000; 
+    int a = 1, b = 100000;
     double res_time, timein, timeout;
     timein = omp_get_wtime();
     omp_set_num_threads(4);
@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 #pragma omp parallel for
     for (int n = a; n < b; n++)
         if (isPalindrome(n)) printf("Palindrom - %d\n", n);
-        // if (isPalindrome(n)) palindrom_vector.push_back(n);
+    // if (isPalindrome(n)) palindrom_vector.push_back(n);
     timeout = omp_get_wtime();
     res_time = timeout - timein;
     printf("CPU Time: %lf ms\n", res_time);

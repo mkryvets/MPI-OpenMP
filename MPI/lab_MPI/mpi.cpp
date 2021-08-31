@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 			// process rank, message tag, communicator
 			MPI_Send(&interval, 2, MPI_INT, thread_num, 0, MPI_COMM_WORLD);
 
-		cpu_time_start = MPI_Wtime();
+		//cpu_time_start = MPI_Wtime();
 	}
 	// otherwise blocking receive for a message
 	else
@@ -42,17 +42,16 @@ int main(int argc, char** argv)
 	// get the range for current thread
 	thread_range = get_interval(thread, thread_size, interval);
 
+	cpu_time_start = MPI_Wtime();
+
 	// get all palindroms from this range
 	print_palin_range(thread_range[0], thread_range[1]);
 
 	// fin of processes
-	if (thread == 0)
-	{
-		cpu_time_fin = MPI_Wtime();
-		// print results
-		res_time = cpu_time_fin - cpu_time_start;
-		printf("CPU Time: %lf ms\n", res_time * 1000);
-	}
+	cpu_time_fin = MPI_Wtime();
+	// print results
+	res_time = cpu_time_fin - cpu_time_start;
+	printf("CPU Time: %lf ms\n", res_time * 1000);
 
 	MPI_Finalize();
 	return 0;
@@ -87,7 +86,7 @@ inline void print_palin_range(int ibeg, int iend)
 		} while (num != 0);
 		// if reversed is base i -> palindrom
 
-		// if (rev == i) printf("Palindrom - %d\n", i);
-		if (rev == i) palindrom_vector.push_back(i);
+		if (rev == i) printf("Palindrom - %d\n", i);
+		// if (rev == i) palindrom_vector.push_back(i);
 	}
 }

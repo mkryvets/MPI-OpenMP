@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <omp.h>
 #include <ctime>
 #include <vector>
+#include <chrono>
 
 using namespace std;
 std::vector<int> palindrom_vector;
@@ -26,16 +26,14 @@ bool isPalindrome(int x) {
 
 int main(int argc, char* argv[])
 {
-    int a = 1, b = 1000;
-    double res_time, timein, timeout;
-    timein = omp_get_wtime();
-    
+    int a = 1, b = 100000;
+    auto startTime = std::chrono::high_resolution_clock::now();
+
     for (int n = a; n < b; n++)
         if (isPalindrome(n)) printf("Palindrom - %d\n", n);
         // if (isPalindrome(n)) palindrom_vector.push_back(n);
 
-    timeout = omp_get_wtime();
-    res_time = timeout - timein;
-    printf("CPU Time: %lf ms\n", res_time);
+    auto endTime = std::chrono::high_resolution_clock::now();
+    std::cout << "CPU time: " << std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count() << " ms\n";
     return 0;
 }
